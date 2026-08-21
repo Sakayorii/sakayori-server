@@ -1,5 +1,5 @@
 /main
 proto/listentogether.pb.go
-/metroserver
+/sakayori-server
 server_state.json
 coverage.out

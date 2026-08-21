@@ -1,8 +1,8 @@
-# Metroserver
+# Sakayoriserver
 
-[![codecov](https://codecov.io/gh/MetrolistGroup/metroserver/graph/badge.svg)](https://codecov.io/gh/MetrolistGroup/metroserver)
+[![codecov](https://codecov.io/gh/Sakayorii/sakayori-server/graph/badge.svg)](https://codecov.io/gh/Sakayorii/sakayori-server)
 
-A high performance Go WebSocket server for Metrolist's "Listen Together" feature.  
+A high performance Go WebSocket server for Sakayori's "Listen Together" feature.  
 Utilizes protobuf and gzip compression for fast and efficient communication between clients.
 
 # Quickstart
@@ -11,8 +11,8 @@ Utilizes protobuf and gzip compression for fast and efficient communication betw
 You need to install go, protobuf, and protoc-gen-go
 
 ```bash
-git clone https://github.com/MetrolistGroup/metroserver
-cd metroserver
+git clone https://github.com/Sakayorii/sakayori-server
+cd sakayori-server
 
 # Generate protobuf files (required first time)
 ./scripts/generate_proto.sh
@@ -21,13 +21,13 @@ cd metroserver
 go mod download
 
 # Build the server
-go build -o metroserver ./cmd/metroserver
+go build -o sakayori-server ./cmd/sakayori-server
 
 # Run on default port 8080
-./metroserver
+./sakayori-server
 
 # Run on custom port
-PORT=9000 ./metroserver
+PORT=9000 ./sakayori-server
 ```
 
 ## Configuration
@@ -38,9 +38,9 @@ The server writes graceful-shutdown recovery state to `server_state.json` with `
 
 ## Project Structure
 
-- `cmd/metroserver` contains the executable entrypoint.
+- `cmd/sakayori-server` contains the executable entrypoint.
 - `internal/server` contains server behavior and tests.
-- `metroproto` contains the protobuf schema submodule.
+- `sakayori-proto` contains the protobuf schema submodule.
 - `proto` contains generated Go protobuf code.
 - `scripts` contains development and generation scripts.
 
@@ -48,25 +48,25 @@ The server writes graceful-shutdown recovery state to `server_state.json` with `
 
 ```bash
 # Clone the repository
-git clone https://github.com/MetrolistGroup/metroserver
-cd metroserver
+git clone https://github.com/Sakayorii/sakayori-server
+cd sakayori-server
 
 # Build locally
-docker build -t MetrolistGroup:latest .
+docker build -t Sakayorii:latest .
 
 # Run on port 8080
 docker run -d \
   -p 8080:8080 \
   -e PORT=8080 \
-  --name metroserver \
-  metroserver:latest
+  --name sakayori-server \
+  sakayori-server:latest
 
 # Run on custom port
 docker run -d \
   -p 9000:9000 \
   -e PORT=9000 \
-  --name metroserver \
-  metroserver:latest
+  --name sakayori-server \
+  sakayori-server:latest
 ```
 
 ## Docker Compose
@@ -74,8 +74,8 @@ docker run -d \
 ```yaml
 ---
 services:
-  metroserver:
-    image: ghcr.io/MetrolistGroup/metroserver:latest
+  sakayori-server:
+    image: ghcr.io/Sakayorii/sakayori-server:latest
     ports:
       - "8080:8080"
     environment:

@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	pb "github.com/MetrolistGroup/metroserver/proto"
+	pb "github.com/Sakayorii/sakayori-server/proto"
 )
 
 func lifecycleTestRoom(host, guest *Client) *Room {

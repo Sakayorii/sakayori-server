@@ -1,7 +1,7 @@
 .git
 .github
 .gitignore
-/metroserver
+/sakayori-server
 README.md
 LICENSE
 .DS_Store

@@ -6,7 +6,7 @@ set -e
 ROOT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 
-PROTO_DIR="./metroproto"
+PROTO_DIR="./sakayori-proto"
 OUT_DIR="./proto"
 
 if [ ! -f "$PROTO_DIR/listentogether.proto" ]; then

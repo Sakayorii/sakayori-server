@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	pb "github.com/MetrolistGroup/metroserver/proto"
+	pb "github.com/Sakayorii/sakayori-server/proto"
 )
 
 func roomTestFixture() (*Server, *Room, *Client, *Client) {

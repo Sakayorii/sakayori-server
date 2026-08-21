@@ -24,7 +24,7 @@ COPY . .
 RUN bash scripts/generate_proto.sh
 
 # Build the application
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o metroserver -ldflags="-w -s" ./cmd/metroserver
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o sakayori-server -ldflags="-w -s" ./cmd/sakayori-server
 
 # Final stage - minimal runtime image
 FROM alpine:3.20
@@ -33,20 +33,20 @@ FROM alpine:3.20
 RUN apk add --no-cache ca-certificates
 
 # Create non-root user for security
-RUN addgroup -g 1000 metrolist && \
-    adduser -D -u 1000 -G metrolist metrolist
+RUN addgroup -g 1000 sakayori && \
+    adduser -D -u 1000 -G sakayori sakayori
 
 # Set working directory
 WORKDIR /app
 
 # Copy binary from builder
-COPY --from=builder /build/metroserver .
+COPY --from=builder /build/sakayori-server .
 
 # Change ownership to non-root user
-RUN chown -R metrolist:metrolist /app
+RUN chown -R sakayori:sakayori /app
 
 # Switch to non-root user
-USER metrolist
+USER sakayori
 
 # Expose port (default 8080, can be overridden)
 EXPOSE 8080
@@ -57,4 +57,4 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
 
 # Run the application
 # PORT can be overridden at runtime using -e PORT=<port>
-CMD ["./metroserver"]
+CMD ["./sakayori-server"]
